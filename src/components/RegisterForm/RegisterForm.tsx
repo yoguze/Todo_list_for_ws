@@ -24,6 +24,7 @@ export const RegisterForm = ({ setTaskList }: Props) => {
       title:title,
       detail:detail,
     }]);
+    primaryBtn(true);
   };
   };
   //ここまでが今回の「新規登録の作成」の問題内容//
@@ -34,7 +35,7 @@ export const RegisterForm = ({ setTaskList }: Props) => {
       <br />
       <textarea style={textarea} value={detail} placeholder="TODOを入力" onChange={(e) => setDetail(e.target.value)} rows={7}></textarea>
       <div style={actions}>
-        <button style={primaryBtn(true)} type='submit' disabled={isError}>
+        <button style={primaryBtn(false)} type='submit' disabled={isError}>
           追加
         </button>
       </div>

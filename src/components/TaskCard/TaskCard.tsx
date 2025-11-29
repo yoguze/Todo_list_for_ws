@@ -50,6 +50,7 @@ export const TaskCard = ({ task, taskList, setTaskList }: Props) => {
     
     setTaskList(updatedTaskList);
     setIsEditing(false);
+    S.primaryBtn(true);
     };
   };
 
@@ -68,7 +69,7 @@ export const TaskCard = ({ task, taskList, setTaskList }: Props) => {
           />
           <br />
           <div style={S.editActions}>
-            <button style={S.primaryBtn(true)} type='submit' disabled={isError}>
+            <button style={S.primaryBtn(false)} type='submit' disabled={isError}>
               更新
             </button>
             <button style={S.pillBtn} onClick={onClickCancelButton} type='button'>
