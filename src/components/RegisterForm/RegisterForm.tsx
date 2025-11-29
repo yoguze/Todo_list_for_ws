@@ -18,14 +18,14 @@ export const RegisterForm = ({ setTaskList }: Props) => {
   const onSubmitForm = (e: React.FormEvent) => {
     e.preventDefault();
     // ここに追加ボタン押下時の処理を書く
-
+    if (50<=detail.length && detail.length<=200 && 1<=title.length && title.length<=50) {
     setTaskList((prevTaskList) => [...prevTaskList, {
       id: prevTaskList.length+1,
       title:title,
       detail:detail,
     }]);
   };
-
+  };
   //ここまでが今回の「新規登録の作成」の問題内容//
     
   return (
@@ -41,3 +41,7 @@ export const RegisterForm = ({ setTaskList }: Props) => {
     </form>
   );
 };
+//disabled={isError}//
+// const isFormEmpty = !title.trim() || !detail.trim();//
+// const isError = isFormEmpty;//
+//このコードで入力値が空欄の場合は省略可能//
