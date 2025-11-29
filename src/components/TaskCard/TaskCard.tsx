@@ -40,7 +40,7 @@ export const TaskCard = ({ task, taskList, setTaskList }: Props) => {
   const onSubmitEditForm = (e: React.FormEvent) => {
     e.preventDefault();
     // ここに更新ボタン押下時の処理
-    if (50<=detail.length && detail.length<=200 && 1<=title.length && title.length<=50){
+    if (50<=editedDetail.length && editedDetail.length<=200 && 1<=editedTitle.length && editedTitle.length<=50){
     const updatedTaskList = taskList.map((t) =>
       t.id === task.id ? { ...t, title: editedTitle, detail: editedDetail } : t
     );
