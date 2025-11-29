@@ -41,12 +41,13 @@ export const TaskCard = ({ task }: Props) => {
     <>
       {isEditing ? (
         <form style={S.card} onSubmit={onSubmitEditForm}>
-          <input style={S.editInput} value={editedTitle} onChange={(e) => setEditedTitle(e.target.value)} />
+          <input style={S.editInput} value={editedTitle}  onChange={(e) => setEditedTitle(e.target.value)} />
           <br />
           <textarea
             style={S.editTextarea}
             value={editedDetail}
             onChange={(e) => setEditedDetail(e.target.value)}
+            
             rows={7}
           />
           <br />
