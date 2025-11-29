@@ -4,17 +4,22 @@ import * as S from './TaskCard.styles';
 
 type Props = {
   task: TaskType;
+  taskList: TaskType[];
+  setTaskList: React.Dispatch<React.SetStateAction<TaskType[]>>;
 };
 
-export const TaskCard = ({ task }: Props) => {
+export const TaskCard = ({ task, taskList, setTaskList }: Props) => {
   const { title, detail } = task;
   const [isEditing, setIsEditing] = useState(false);
   const [editedTitle, setEditedTitle] = useState(title);
   const [editedDetail, setEditedDetail] = useState(detail);
+  const isFormEmpty = !editedTitle.trim() || !editedDetail.trim();
+  const isError = isFormEmpty;
 
   // 編集ボタン押下時の処理
   const onClickEditButton = () => {
     setIsEditing((prev) => !prev);
+
   };
 
   // キャンセルボタン押下時の処理
@@ -35,24 +40,32 @@ export const TaskCard = ({ task }: Props) => {
   const onSubmitEditForm = (e: React.FormEvent) => {
     e.preventDefault();
     // ここに更新ボタン押下時の処理
+    if (50<=detail.length && detail.length<=200 && 1<=title.length && title.length<=50){
+    const updatedTaskList = taskList.map((t) =>
+      t.id === task.id ? { ...t, title: editedTitle, detail: editedDetail } : t
+    );
+    
+    setTaskList(updatedTaskList);
+    setIsEditing(false);
+    };
   };
 
   return (
     <>
       {isEditing ? (
         <form style={S.card} onSubmit={onSubmitEditForm}>
-          <input style={S.editInput} value={editedTitle}  onChange={(e) => setEditedTitle(e.target.value)} />
+          <input style={S.editInput} value={editedTitle} placeholder='タイトルを入力' onChange={(e) => setEditedTitle(e.target.value)} />
           <br />
           <textarea
             style={S.editTextarea}
             value={editedDetail}
             onChange={(e) => setEditedDetail(e.target.value)}
-            
             rows={7}
+            placeholder='TODO を入力'
           />
           <br />
           <div style={S.editActions}>
-            <button style={S.primaryBtn(true)} type='submit'>
+            <button style={S.primaryBtn(true)} type='submit' disabled={isError}>
               更新
             </button>
             <button style={S.pillBtn} onClick={onClickCancelButton} type='button'>
