@@ -23,8 +23,9 @@ export const RegisterForm = ({ setTaskList }: Props) => {
       detail:detail,
     };
 
-    setTaskList([taskList,newTask])
+    setTaskList((prevTaskList) => [...prevTaskList, newTask]);
   };
+  //ここまでが今回の「新規登録の作成」問題の内容//
     
   return (
     <form style={formCard} onSubmit={(e) => onSubmitForm(e)}>
